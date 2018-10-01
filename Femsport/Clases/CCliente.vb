@@ -10,6 +10,7 @@
     Private _direccion As String
     Private _telefono As String
 
+    ''Propiedad para identificar clientes
     Property DNI As String
         Get
             Return _DNI
