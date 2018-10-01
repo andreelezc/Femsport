@@ -1,0 +1,633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FemsportDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="datetime" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="pais" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="provincia" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="localidad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="CUIT" />
+          </Key>
+          <Property Name="CUIT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_tipoEmpleado" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DNI" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="pais" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="provincia" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="localidad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="imagen" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacturaCabecera">
+          <Key>
+            <PropertyRef Name="id_cabeceraFactura" />
+          </Key>
+          <Property Name="id_cabeceraFactura" Type="int" Nullable="false" />
+          <Property Name="DNI" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="fechaVenta" Type="datetime" Nullable="false" />
+          <Property Name="formaPago" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacturaDetalle">
+          <Key>
+            <PropertyRef Name="id_cabeceraFactura" />
+          </Key>
+          <Property Name="id_cabeceraFactura" Type="int" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Marcas">
+          <Key>
+            <PropertyRef Name="id_marca" />
+          </Key>
+          <Property Name="id_marca" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="id_marca" Type="int" Nullable="false" />
+          <Property Name="id_tipoProducto" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="stockMinimo" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="talle" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoEmpleado">
+          <Key>
+            <PropertyRef Name="id_tipoEmpleado" />
+          </Key>
+          <Property Name="id_tipoEmpleado" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="id_tipoProducto" />
+          </Key>
+          <Property Name="id_tipoProducto" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="CUIT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Empleados_TipoEmpleado">
+          <End Role="TipoEmpleado" Type="Self.TipoEmpleado" Multiplicity="1" />
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEmpleado">
+              <PropertyRef Name="id_tipoEmpleado" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="id_tipoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturaCabecera_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="FacturaCabecera" Type="Self.FacturaCabecera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="FacturaCabecera">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturaCabecera_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="FacturaCabecera" Type="Self.FacturaCabecera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="FacturaCabecera">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturaDetalle_FacturaCabecera">
+          <End Role="FacturaCabecera" Type="Self.FacturaCabecera" Multiplicity="1" />
+          <End Role="FacturaDetalle" Type="Self.FacturaDetalle" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="FacturaCabecera">
+              <PropertyRef Name="id_cabeceraFactura" />
+            </Principal>
+            <Dependent Role="FacturaDetalle">
+              <PropertyRef Name="id_cabeceraFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturaDetalle_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="FacturaDetalle" Type="Self.FacturaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="FacturaDetalle">
+              <PropertyRef Name="codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Marcas">
+          <End Role="Marcas" Type="Self.Marcas" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_TipoProducto">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="id_tipoProducto" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="id_tipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Empleados">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="CUIT" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="CUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FemsportDataBaseModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacturaCabecera" EntityType="Self.FacturaCabecera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacturaDetalle" EntityType="Self.FacturaDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marcas" EntityType="Self.Marcas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEmpleado" EntityType="Self.TipoEmpleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Empleados_TipoEmpleado" Association="Self.FK_Empleados_TipoEmpleado">
+            <End Role="TipoEmpleado" EntitySet="TipoEmpleado" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaCabecera_Clientes" Association="Self.FK_FacturaCabecera_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="FacturaCabecera" EntitySet="FacturaCabecera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaCabecera_Usuarios" Association="Self.FK_FacturaCabecera_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="FacturaCabecera" EntitySet="FacturaCabecera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaDetalle_FacturaCabecera" Association="Self.FK_FacturaDetalle_FacturaCabecera">
+            <End Role="FacturaCabecera" EntitySet="FacturaCabecera" />
+            <End Role="FacturaDetalle" EntitySet="FacturaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaDetalle_Productos" Association="Self.FK_FacturaDetalle_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="FacturaDetalle" EntitySet="FacturaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Marcas" Association="Self.FK_Productos_Marcas">
+            <End Role="Marcas" EntitySet="Marcas" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_TipoProducto" Association="Self.FK_Productos_TipoProducto">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Empleados" Association="Self.FK_Usuarios_Empleados">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FemsportDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pais" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="provincia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="localidad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FacturaCabecera" Relationship="Self.FK_FacturaCabecera_Clientes" FromRole="Clientes" ToRole="FacturaCabecera" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="CUIT" />
+          </Key>
+          <Property Name="CUIT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_tipoEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DNI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pais" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="provincia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="localidad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="imagen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TipoEmpleado" Relationship="Self.FK_Empleados_TipoEmpleado" FromRole="Empleados" ToRole="TipoEmpleado" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Empleados" FromRole="Empleados" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="FacturaCabecera">
+          <Key>
+            <PropertyRef Name="id_cabeceraFactura" />
+          </Key>
+          <Property Name="id_cabeceraFactura" Type="Int32" Nullable="false" />
+          <Property Name="DNI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="fechaVenta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="formaPago" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_FacturaCabecera_Clientes" FromRole="FacturaCabecera" ToRole="Clientes" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_FacturaCabecera_Usuarios" FromRole="FacturaCabecera" ToRole="Usuarios" />
+          <NavigationProperty Name="FacturaDetalle" Relationship="Self.FK_FacturaDetalle_FacturaCabecera" FromRole="FacturaCabecera" ToRole="FacturaDetalle" />
+        </EntityType>
+        <EntityType Name="FacturaDetalle">
+          <Key>
+            <PropertyRef Name="id_cabeceraFactura" />
+          </Key>
+          <Property Name="id_cabeceraFactura" Type="Int32" Nullable="false" />
+          <Property Name="codigo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <NavigationProperty Name="FacturaCabecera" Relationship="Self.FK_FacturaDetalle_FacturaCabecera" FromRole="FacturaDetalle" ToRole="FacturaCabecera" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_FacturaDetalle_Productos" FromRole="FacturaDetalle" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Marcas">
+          <Key>
+            <PropertyRef Name="id_marca" />
+          </Key>
+          <Property Name="id_marca" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Marcas" FromRole="Marcas" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_marca" Type="Int32" Nullable="false" />
+          <Property Name="id_tipoProducto" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="stockMinimo" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="talle" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FacturaDetalle" Relationship="Self.FK_FacturaDetalle_Productos" FromRole="Productos" ToRole="FacturaDetalle" />
+          <NavigationProperty Name="Marcas" Relationship="Self.FK_Productos_Marcas" FromRole="Productos" ToRole="Marcas" />
+          <NavigationProperty Name="TipoProducto" Relationship="Self.FK_Productos_TipoProducto" FromRole="Productos" ToRole="TipoProducto" />
+        </EntityType>
+        <EntityType Name="TipoEmpleado">
+          <Key>
+            <PropertyRef Name="id_tipoEmpleado" />
+          </Key>
+          <Property Name="id_tipoEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_Empleados_TipoEmpleado" FromRole="TipoEmpleado" ToRole="Empleados" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="id_tipoProducto" />
+          </Key>
+          <Property Name="id_tipoProducto" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_TipoProducto" FromRole="TipoProducto" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="CUIT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_Usuarios_Empleados" FromRole="Usuarios" ToRole="Empleados" />
+          <NavigationProperty Name="FacturaCabecera" Relationship="Self.FK_FacturaCabecera_Usuarios" FromRole="Usuarios" ToRole="FacturaCabecera" />
+        </EntityType>
+        <Association Name="FK_FacturaCabecera_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="FacturaCabecera" Type="Self.FacturaCabecera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="FacturaCabecera">
+              <PropertyRef Name="DNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleados_TipoEmpleado">
+          <End Role="TipoEmpleado" Type="Self.TipoEmpleado" Multiplicity="1" />
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEmpleado">
+              <PropertyRef Name="id_tipoEmpleado" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="id_tipoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Empleados">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="CUIT" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="CUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturaCabecera_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="FacturaCabecera" Type="Self.FacturaCabecera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="FacturaCabecera">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturaDetalle_FacturaCabecera">
+          <End Role="FacturaCabecera" Type="Self.FacturaCabecera" Multiplicity="1" />
+          <End Role="FacturaDetalle" Type="Self.FacturaDetalle" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="FacturaCabecera">
+              <PropertyRef Name="id_cabeceraFactura" />
+            </Principal>
+            <Dependent Role="FacturaDetalle">
+              <PropertyRef Name="id_cabeceraFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturaDetalle_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="FacturaDetalle" Type="Self.FacturaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="FacturaDetalle">
+              <PropertyRef Name="codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Marcas">
+          <End Role="Marcas" Type="Self.Marcas" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_TipoProducto">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="id_tipoProducto" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="id_tipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FemsportDataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" />
+          <EntitySet Name="FacturaCabecera" EntityType="Self.FacturaCabecera" />
+          <EntitySet Name="FacturaDetalle" EntityType="Self.FacturaDetalle" />
+          <EntitySet Name="Marcas" EntityType="Self.Marcas" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="TipoEmpleado" EntityType="Self.TipoEmpleado" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_FacturaCabecera_Clientes" Association="Self.FK_FacturaCabecera_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="FacturaCabecera" EntitySet="FacturaCabecera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleados_TipoEmpleado" Association="Self.FK_Empleados_TipoEmpleado">
+            <End Role="TipoEmpleado" EntitySet="TipoEmpleado" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Empleados" Association="Self.FK_Usuarios_Empleados">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaCabecera_Usuarios" Association="Self.FK_FacturaCabecera_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="FacturaCabecera" EntitySet="FacturaCabecera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaDetalle_FacturaCabecera" Association="Self.FK_FacturaDetalle_FacturaCabecera">
+            <End Role="FacturaCabecera" EntitySet="FacturaCabecera" />
+            <End Role="FacturaDetalle" EntitySet="FacturaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturaDetalle_Productos" Association="Self.FK_FacturaDetalle_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="FacturaDetalle" EntitySet="FacturaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Marcas" Association="Self.FK_Productos_Marcas">
+            <End Role="Marcas" EntitySet="Marcas" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_TipoProducto" Association="Self.FK_Productos_TipoProducto">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FemsportDataBaseModelStoreContainer" CdmEntityContainer="FemsportDataBaseEntities">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="FemsportDataBaseModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="FemsportDataBaseModel.Empleados">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="id_tipoEmpleado" ColumnName="id_tipoEmpleado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturaCabecera">
+            <EntityTypeMapping TypeName="FemsportDataBaseModel.FacturaCabecera">
+              <MappingFragment StoreEntitySet="FacturaCabecera">
+                <ScalarProperty Name="id_cabeceraFactura" ColumnName="id_cabeceraFactura" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="fechaVenta" ColumnName="fechaVenta" />
+                <ScalarProperty Name="formaPago" ColumnName="formaPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturaDetalle">
+            <EntityTypeMapping TypeName="FemsportDataBaseModel.FacturaDetalle">
+              <MappingFragment StoreEntitySet="FacturaDetalle">
+                <ScalarProperty Name="id_cabeceraFactura" ColumnName="id_cabeceraFactura" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marcas">
+            <EntityTypeMapping TypeName="FemsportDataBaseModel.Marcas">
+              <MappingFragment StoreEntitySet="Marcas">
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="FemsportDataBaseModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+                <ScalarProperty Name="id_tipoProducto" ColumnName="id_tipoProducto" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="stockMinimo" ColumnName="stockMinimo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="talle" ColumnName="talle" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEmpleado">
+            <EntityTypeMapping TypeName="FemsportDataBaseModel.TipoEmpleado">
+              <MappingFragment StoreEntitySet="TipoEmpleado">
+                <ScalarProperty Name="id_tipoEmpleado" ColumnName="id_tipoEmpleado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoProducto">
+            <EntityTypeMapping TypeName="FemsportDataBaseModel.TipoProducto">
+              <MappingFragment StoreEntitySet="TipoProducto">
+                <ScalarProperty Name="id_tipoProducto" ColumnName="id_tipoProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="FemsportDataBaseModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

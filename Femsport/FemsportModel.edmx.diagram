@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="01cb4e1c4e2b453e92a5ca96cec4006a" Name="Diagram1">
+        <EntityTypeShape EntityType="FemsportDataBaseModel.Clientes" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FemsportDataBaseModel.Empleados" Width="1.5" PointX="1.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FemsportDataBaseModel.FacturaCabecera" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FemsportDataBaseModel.FacturaDetalle" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FemsportDataBaseModel.Marcas" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FemsportDataBaseModel.Productos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FemsportDataBaseModel.TipoEmpleado" Width="1.5" PointX="1.5" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="FemsportDataBaseModel.TipoProducto" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FemsportDataBaseModel.Usuarios" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <AssociationConnector Association="FemsportDataBaseModel.FK_FacturaCabecera_Clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="FemsportDataBaseModel.FK_Empleados_TipoEmpleado" ManuallyRouted="false" />
+        <AssociationConnector Association="FemsportDataBaseModel.FK_Usuarios_Empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="FemsportDataBaseModel.FK_FacturaCabecera_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="FemsportDataBaseModel.FK_FacturaDetalle_FacturaCabecera" ManuallyRouted="false" />
+        <AssociationConnector Association="FemsportDataBaseModel.FK_FacturaDetalle_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="FemsportDataBaseModel.FK_Productos_Marcas" ManuallyRouted="false" />
+        <AssociationConnector Association="FemsportDataBaseModel.FK_Productos_TipoProducto" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

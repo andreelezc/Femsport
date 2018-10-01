@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Femsport", "Femsport\Femsport.vbproj", "{BF635C25-2A37-42FF-B6BF-CD4BBF23A01E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF635C25-2A37-42FF-B6BF-CD4BBF23A01E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF635C25-2A37-42FF-B6BF-CD4BBF23A01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF635C25-2A37-42FF-B6BF-CD4BBF23A01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF635C25-2A37-42FF-B6BF-CD4BBF23A01E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DB1EFCB-BCD9-4FE2-B919-44BDA7EF64B1}
+	EndGlobalSection
+EndGlobal

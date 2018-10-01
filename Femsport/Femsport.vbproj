@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF635C25-2A37-42FF-B6BF-CD4BBF23A01E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Femsport.My.MyApplication</StartupObject>
+    <RootNamespace>Femsport</RootNamespace>
+    <AssemblyName>Femsport</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Femsport.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Femsport.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\CEmpleados.vb" />
+    <Compile Include="Clases\CCliente.vb" />
+    <Compile Include="Clases\CFacturaCabecera.vb" />
+    <Compile Include="Clases\CFacturaDetalle.vb" />
+    <Compile Include="Clases\CUsuario.vb" />
+    <Compile Include="Clases\CTipoProducto.vb" />
+    <Compile Include="Clases\CProducto.vb" />
+    <Compile Include="Clases\CMarca.vb" />
+    <Compile Include="Clases\CTipoEmpleado.vb" />
+    <Compile Include="Clientes.vb">
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ModValidaciones.vb" />
+    <Compile Include="Empleados.vb">
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FacturaCabecera.vb">
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FacturaDetalle.vb">
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FemsportModel.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FemsportModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FemsportModel.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FemsportModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FemsportModel.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="General\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="General\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Marcas.vb">
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilAdministrador\AltaUsuario.Designer.vb">
+      <DependentUpon>AltaUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilAdministrador\AltaUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilAdministrador\EditarInfoUsuario.Designer.vb">
+      <DependentUpon>EditarInfoUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilAdministrador\EditarInfoUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\AltaCliente%28G%29.Designer.vb">
+      <DependentUpon>AltaCliente%28G%29.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\AltaCliente%28G%29.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\AltaEmpleado.Designer.vb">
+      <DependentUpon>AltaEmpleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\AltaEmpleado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\AltaProducto.Designer.vb">
+      <DependentUpon>AltaProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\AltaProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\EditarInfoCliente%28G%29.Designer.vb">
+      <DependentUpon>EditarInfoCliente%28G%29.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\EditarInfoCliente%28G%29.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\EditarInfoEmpleado.Designer.vb">
+      <DependentUpon>EditarInfoEmpleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\EditarInfoEmpleado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\EditarInfoProducto.Designer.vb">
+      <DependentUpon>EditarInfoProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\EditarInfoProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\GestionClientes%28G%29.Designer.vb">
+      <DependentUpon>GestionClientes%28G%29.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\GestionClientes%28G%29.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\GestionEmpleados.Designer.vb">
+      <DependentUpon>GestionEmpleados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\GestionEmpleados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\GestionProductos.Designer.vb">
+      <DependentUpon>GestionProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\GestionProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\ListaVentas.Designer.vb">
+      <DependentUpon>ListaVentas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\ListaVentas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\VerPerfilGerente.Designer.vb">
+      <DependentUpon>VerPerfilGerente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\VerPerfilGerente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilGerente\MDIGerente.Designer.vb">
+      <DependentUpon>MDIGerente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilGerente\MDIGerente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilAdministrador\EditarInfoAdministrador.Designer.vb">
+      <DependentUpon>EditarInfoAdministrador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilAdministrador\EditarInfoAdministrador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilAdministrador\MDIAdministrador.Designer.vb">
+      <DependentUpon>MDIAdministrador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilAdministrador\MDIAdministrador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilAdministrador\VerPerfilAdministrador.Designer.vb">
+      <DependentUpon>VerPerfilAdministrador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilAdministrador\VerPerfilAdministrador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilAdministrador\GestionUsuarios.Designer.vb">
+      <DependentUpon>GestionUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilAdministrador\GestionUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\AltaCliente%28V%29.Designer.vb">
+      <DependentUpon>AltaCliente%28V%29.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilVendedor\AltaCliente%28V%29.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\EditarInfoCliente%28V%29.Designer.vb">
+      <DependentUpon>EditarInfoCliente%28V%29.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilVendedor\EditarInfoCliente%28V%29.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\Facturacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\Facturacion.Designer.vb">
+      <DependentUpon>Facturacion.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\EditarInfoVendedor.Designer.vb">
+      <DependentUpon>EditarInfoVendedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilVendedor\EditarInfoVendedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\FacturaDetalle.Designer.vb">
+      <DependentUpon>FacturaDetalle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilVendedor\FacturaDetalle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\GestionClientes%28V%29.Designer.vb">
+      <DependentUpon>GestionClientes%28V%29.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilVendedor\GestionClientes%28V%29.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\VerPerfilVendedor.Designer.vb">
+      <DependentUpon>VerPerfilVendedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilVendedor\VerPerfilVendedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\ListaProductos.Designer.vb">
+      <DependentUpon>ListaProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilVendedor\ListaProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\ListaVentas.Designer.vb">
+      <DependentUpon>ListaVentas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilVendedor\ListaVentas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfilVendedor\MDIVendedor.Designer.vb">
+      <DependentUpon>MDIVendedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilVendedor\MDIVendedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Productos.vb">
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoEmpleado.vb">
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoProducto.vb">
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.vb">
+      <DependentUpon>FemsportModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="General\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilAdministrador\AltaUsuario.resx">
+      <DependentUpon>AltaUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilAdministrador\EditarInfoUsuario.resx">
+      <DependentUpon>EditarInfoUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\AltaCliente%28G%29.resx">
+      <DependentUpon>AltaCliente%28G%29.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\AltaEmpleado.resx">
+      <DependentUpon>AltaEmpleado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\AltaProducto.resx">
+      <DependentUpon>AltaProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\EditarInfoCliente%28G%29.resx">
+      <DependentUpon>EditarInfoCliente%28G%29.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\EditarInfoEmpleado.resx">
+      <DependentUpon>EditarInfoEmpleado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\EditarInfoProducto.resx">
+      <DependentUpon>EditarInfoProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\GestionClientes%28G%29.resx">
+      <DependentUpon>GestionClientes%28G%29.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\GestionEmpleados.resx">
+      <DependentUpon>GestionEmpleados.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\GestionProductos.resx">
+      <DependentUpon>GestionProductos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\ListaVentas.resx">
+      <DependentUpon>ListaVentas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\VerPerfilGerente.resx">
+      <DependentUpon>VerPerfilGerente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilGerente\MDIGerente.resx">
+      <DependentUpon>MDIGerente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilAdministrador\EditarInfoAdministrador.resx">
+      <DependentUpon>EditarInfoAdministrador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilAdministrador\MDIAdministrador.resx">
+      <DependentUpon>MDIAdministrador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilAdministrador\VerPerfilAdministrador.resx">
+      <DependentUpon>VerPerfilAdministrador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilAdministrador\GestionUsuarios.resx">
+      <DependentUpon>GestionUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\AltaCliente%28V%29.resx">
+      <DependentUpon>AltaCliente%28V%29.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\EditarInfoCliente%28V%29.resx">
+      <DependentUpon>EditarInfoCliente%28V%29.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\EditarInfoVendedor.resx">
+      <DependentUpon>EditarInfoVendedor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\Facturacion.resx">
+      <DependentUpon>Facturacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\FacturaDetalle.resx">
+      <DependentUpon>FacturaDetalle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\GestionClientes%28V%29.resx">
+      <DependentUpon>GestionClientes%28V%29.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\VerPerfilVendedor.resx">
+      <DependentUpon>VerPerfilVendedor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\ListaProductos.resx">
+      <DependentUpon>ListaProductos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\ListaVentas.resx">
+      <DependentUpon>ListaVentas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfilVendedor\MDIVendedor.resx">
+      <DependentUpon>MDIVendedor.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="FemsportModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FemsportModel.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FemsportModel.edmx.diagram">
+      <DependentUpon>FemsportModel.edmx</DependentUpon>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\User-blue256_25016.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit_icon-icons.com_71853.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout_3622.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_new-24_103173.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_exit_2676937.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_6_3319634.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_05.Tag_290145.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_icon-ios7-people_211793.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_questionssvg_1579793.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_icon-111-search_314689.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Confirm_40044.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_office-41_809593.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Confirm_400441.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Researching-and-Screening-Tenants-for-a-Santa-Clarita-Rental-Property.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_icon-111-search_3146891.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_icon-111-search_3146892.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_icon-111-search_3146893.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_more_476329.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Info_Circle_Symbol_Information_Letter_1396823.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Info_Circle_Symbol_Information_Letter_13968231.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_BT_printer_905556.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_new-24_1031731.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_office-41_8095931.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_exit_26769371.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_management_2799204 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_6_33196341.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_General_-_Office_37_1471104.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_sign-add_299068.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Close_1891023.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_edit-change-pencil_2931178.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_eye_preview_see_seen_view_392505.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Customers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-Buy-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-Clear Shopping Cart-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-Checkout-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-Clear Shopping Cart-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ok-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_f-cross_256_282471.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo1.png" />
+    <None Include="Resources\pink-yellow-gradient-wallpaper-1.jpg" />
+    <None Include="Resources\pink-and-blue-png-gradient-blue-and-pink-by-vodkachanlovesyou-1024.png" />
+    <None Include="Resources\o14tpzA.jpg" />
+    <None Include="Resources\pink-gradient-abstract-hd-wallpaper-1920x1080-4251.png" />
+    <None Include="Resources\mdis5001.png" />
+    <None Include="Resources\mdis500.png" />
+    <None Include="Resources\mdis500.jpg" />
+    <None Include="Resources\mdis.png" />
+    <None Include="Resources\loginok500.jpg" />
+    <None Include="Resources\loginok.jpg" />
+    <None Include="Resources\login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FemsportModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FemsportModel.edmx</DependentUpon>
+      <LastGenOutput>FemsportModel.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="FemsportModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FemsportModel.edmx</DependentUpon>
+      <LastGenOutput>FemsportModel.vb</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
